@@ -2,7 +2,7 @@ using System;
 using System.Net;
 using AlterDeep.DBOperations;
 using AlterDeep.DBOperations.Model;
-using AlterDeep.Log;
+using AlterDeep.Logging;
 using AlterDeep.Middleware;
 using AlterDeep.Services;
 using Microsoft.AspNetCore.Builder;

@@ -1,10 +1,10 @@
-﻿using AlterDeep.Log;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using AlterDeep.Logging;
 using Newtonsoft.Json;
 
 namespace AlterDeep.Middleware
