@@ -1,0 +1,44 @@
+version: '3.4'
+volumes:
+  db_data: {}
+services:
+  db:
+    image: mysql
+    volumes:
+      - db_data:/var/lib/mysql    
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+
+  alterdeep:
+    image: ${DOCKER_REGISTRY-}alterdeep
+    build:
+      context: .
+      dockerfile: AlterDeep/Dockerfile
+    depends_on:
+      - db
+      - elasticsearch
+    restart: always
+ 
+    
+  elasticsearch:
+   image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+   ports:
+    - 9200:9200
+   environment:
+    - xpack.monitoring.enabled=true
+    - xpack.watcher.enabled=false
+    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    - discovery.type=single-node
+
+  kibana:
+   image: docker.elastic.co/kibana/kibana:7.9.2
+   ports:
+    - 5601:5601
+   depends_on:
+    - elasticsearch
+   environment:
+    - ELASTICSEARCH_URL=http://localhost:9200
