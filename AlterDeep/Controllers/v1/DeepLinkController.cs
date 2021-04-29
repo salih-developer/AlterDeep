@@ -19,6 +19,7 @@ namespace AlterDeep.Controllers.v1
         [HttpGet]
         public async Task<ActionResult> Get(string link)
         {
+            //TODO buraya redis cache eklenecek
             var model = await _deepLinkService.GetLinkUrlAsync(link);
             return Ok(model);
         }
