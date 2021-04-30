@@ -35,6 +35,7 @@ namespace AlterDeep.Middleware
 
                 var log = new ApiRequestResponse
                 {
+                    Id = Guid.NewGuid(),
                     Path = context.Request.Path,
                     Method = context.Request.Method,
                     QueryString = context.Request.QueryString.ToString()
